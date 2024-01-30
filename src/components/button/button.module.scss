@@ -1,0 +1,31 @@
+.customBtn {
+  display: inline-block;
+  color: #fff;
+  padding: 17px 28px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 24px;
+  transition: background-color 0.3s, color 0.3s;
+  .btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+}
+.primary {
+  background-color: #7c5dfa;
+}
+.danger {
+  background-color: #ec5757;
+}
+.dark {
+  background-color: #373b53;
+  color: #888eb0;
+}
+.light {
+  background: #f9fafe;
+  color: #7e88c3;
+}

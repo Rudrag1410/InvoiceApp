@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  cursor: pointer;
+
+  .dropdownHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    .icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  .dropdownBox {
+    position: absolute;
+    top: 25px;
+    right: -10px;
+    width: 152px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0px 10px 20px 0px rgba(72, 84, 159, 0.25);
+    padding: 24px;
+
+    .dropdownBoxChildren {
+      gap: 17px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

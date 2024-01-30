@@ -1,0 +1,17 @@
+.invoiceStatus {
+  border-radius: 6px;
+  padding: 13px 27px;
+  opacity: 0.0571;
+}
+.paid {
+  background: $green;
+  color: $green;
+}
+.pending {
+  background: $orange;
+  color: $orange;
+}
+.draft {
+  background: $blue_dark;
+  color: $blue_dark;
+}

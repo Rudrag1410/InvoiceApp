@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 50px 45px;
+  .text {
+    margin-top: 40px;
+    .first {
+      margin-bottom: 24px;
+      font-size: 20px;
+    }
+    .second {
+      color: #888eb0;
+    }
+  }
+}
