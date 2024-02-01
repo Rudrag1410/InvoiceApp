@@ -1,0 +1,31 @@
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #373b53;
+  .left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .divider {
+      width: 1px;
+      height: 72px;
+      margin: 0 12px;
+      background-color: #494e6e;
+    }
+    .avatar {
+      margin: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #000;
+    }
+  }
+}

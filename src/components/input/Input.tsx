@@ -11,7 +11,7 @@ interface InputProps {
 const Input = ({
   label,
   type = "text",
-  placeholder = "Type here",
+  placeholder,
   className,
   required = false,
 }: InputProps): JSX.Element => {

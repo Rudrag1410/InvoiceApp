@@ -1,7 +1,7 @@
-import Typography from "components/typography";
+import { useIsMobile } from "hooks/isMobile";
 import styles from "./card.module.scss";
-import InvoiceStatus from "components/invoiceStatus";
-import Input from "components/input";
+import MobileCard from "./components/mobileCard/MobileCard";
+import DesktopCard from "./components/desktopCard";
 
 interface CardProps {
   invoiceNumber: string;
@@ -9,35 +9,40 @@ interface CardProps {
   amount: string;
   owner: string;
   status: "paid" | "pending" | "draft";
+  onClick?: VoidFunction;
 }
 
-const Card = ({ amount, date, invoiceNumber, owner, status }: CardProps) => {
+const Card = ({
+  amount,
+  date,
+  invoiceNumber,
+  owner,
+  status,
+  onClick,
+}: CardProps): JSX.Element => {
+  const isMobile = useIsMobile();
+
   return (
     <div className={styles.root}>
-      <div className={styles.header}>
-        <Typography variant="spartan_bold" classname={styles.lightBlackColor}>
-          {`#${invoiceNumber}`}
-        </Typography>
-        <Typography variant="spartan_medium" classname={styles.lightBlueColor}>
-          {owner}
-        </Typography>
-      </div>
-      <div className={styles.content}>
-        <div className={styles.dateWrapper}>
-          <Typography
-            variant="spartan_medium"
-            classname={styles.lightBlueColor}
-          >
-            {` Due ${date}`}
-          </Typography>
-          <Typography variant="spartan_bold" classname={styles.lightBlackColor}>
-            {`£ ${amount}`}
-          </Typography>
-        </div>
-        <InvoiceStatus variant={status} classname={styles.text}>
-          {status}
-        </InvoiceStatus>
-      </div>
+      {isMobile ? (
+        <MobileCard
+          amount={amount}
+          invoiceNumber={invoiceNumber}
+          date={date}
+          owner={owner}
+          onClick={onClick}
+          status={status}
+        />
+      ) : (
+        <DesktopCard
+          amount={amount}
+          invoiceNumber={invoiceNumber}
+          date={date}
+          owner={owner}
+          onClick={onClick}
+          status={status}
+        />
+      )}
     </div>
   );
 };

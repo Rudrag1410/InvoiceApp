@@ -1,36 +1,60 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
+import { useIsMobile } from "hooks/isMobile";
 import Typography from "components/typography";
 import styles from "./header.module.scss";
-import Button from "components/button";
+
 import { IconsType } from "assests/types";
 import Dropdown from "components/dropdown";
+import Button, { Variant } from "components/button";
 
 interface HeaderProps {
-  DrawerToggler: () => void;
+  handleDrawerToggler: () => void;
+  setIsEditDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Header = ({ DrawerToggler }: HeaderProps): JSX.Element => {
+const Header = ({
+  handleDrawerToggler,
+  setIsEditDrawer,
+}: HeaderProps): JSX.Element => {
+  const handleDrawer = useCallback(() => {
+    setIsEditDrawer(false);
+    handleDrawerToggler();
+  }, [setIsEditDrawer, handleDrawerToggler]);
+
+  const isMobile = useIsMobile();
+
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.left}>
-          <Typography variant="spartan_bold">Invoices</Typography>
+        <div>
+          <span className={styles.head}>Invoices</span>
           <Typography
             variant="spartan_medium"
             classname={styles.lightBlueColor}
           >
-            7 invoices
+            {isMobile ? "3 invoices" : "There are 3 total invoices"}
           </Typography>
         </div>
         <div className={styles.right}>
           <Dropdown />
-          <Button
-            variant="primary"
-            icon={IconsType.plus}
-            classname={styles.headerbtn}
-            onClick={DrawerToggler}
-          >
-            <Typography variant="spartan_bold">New</Typography>
-          </Button>
+          {isMobile ? (
+            <Button
+              icon={IconsType.plus}
+              variant={Variant.Primary}
+              size="small"
+              onClick={handleDrawer}
+            >
+              <Typography variant="spartan_bold">New</Typography>
+            </Button>
+          ) : (
+            <Button
+              icon={IconsType.plus}
+              variant={Variant.Primary}
+              size="extraLarge"
+              onClick={handleDrawer}
+            >
+              <Typography variant="spartan_bold">New Invoice</Typography>
+            </Button>
+          )}
         </div>
       </div>
     </div>

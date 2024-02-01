@@ -3,5 +3,5 @@ export enum IconsType {
    arrowUp = "Arrow",
    plus = 'Plus',
    empty = 'Empty',
-   delete = 'Delete'
+   delete = 'Delete',
 }

@@ -24,7 +24,7 @@ const InvoiceStatus = ({
         classname
       )}
     >
-      {children}
+      <span>•</span> {children}
     </div>
   );
 };

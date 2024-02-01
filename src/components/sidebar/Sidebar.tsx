@@ -1,14 +1,12 @@
-import styles from "./sidebar.module.scss";
+import { useIsMobile } from "hooks/isMobile";
+
+import MobileSidebar from "./components/mobileSidebar";
+import DesktopSidebar from "./components/desktopSidebar";
+
 const Sidebar = (): JSX.Element => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.icon}>SIDEBAR</div>
-      <div className={styles.right}>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-  );
+  const isMobile = useIsMobile();
+
+  return <>{isMobile ? <MobileSidebar /> : <DesktopSidebar />}</>;
 };
 
 export default Sidebar;

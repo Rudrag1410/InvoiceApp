@@ -1,10 +1,11 @@
-import Button from "components/button";
-import styles from "./formFooter.module.scss";
+import Button, { Variant } from "components/button";
+import styles from "./form.module.scss";
+import SpacingDivider from "components/spacingDivider";
 
 interface FormFooterProps {
   DrawerToggler: () => void;
 }
-const FormFooter = ({ DrawerToggler }: FormFooterProps) => {
+const FormFooter = ({ DrawerToggler }: FormFooterProps): JSX.Element => {
   const handleDiscard = () => {
     DrawerToggler();
   };
@@ -18,29 +19,20 @@ const FormFooter = ({ DrawerToggler }: FormFooterProps) => {
   };
 
   return (
-    <div className={styles.buttonWrapper}>
-      <Button
-        variant="light"
-        onClick={handleDiscard}
-        classname={styles.customButton}
-      >
-        Discard
-      </Button>
-      <Button
-        variant="dark"
-        onClick={handleDraft}
-        classname={styles.customButton}
-      >
-        Save as Draft
-      </Button>
-      <Button
-        variant="primary"
-        onClick={handleSave}
-        classname={styles.customButton}
-      >
-        Save & Send
-      </Button>
-    </div>
+    <>
+      <div className={styles.shadow}></div>
+      <div className={styles.buttonWrapper}>
+        <Button variant={Variant.White} size="large" onClick={handleDiscard}>
+          Discard
+        </Button>
+        <Button variant={Variant.Black} size="large">
+          Save as Draft
+        </Button>
+        <Button variant={Variant.Primary} size="large">
+          Save & Send
+        </Button>
+      </div>
+    </>
   );
 };
 

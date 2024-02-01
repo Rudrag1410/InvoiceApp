@@ -1,10 +1,11 @@
 import Header from "components/header";
-import styles from "./dashboard.module.scss";
 import Card from "components/card";
 import Sidebar from "components/sidebar";
 import Empty from "components/empty";
 import Drawer from "components/drawer";
 import { useState } from "react";
+import styles from "./dashboard.module.scss";
+import Layout from "components/layout";
 
 interface ICardResponse {
   amount: string;
@@ -24,7 +25,7 @@ const Dashboard = (): JSX.Element => {
       status: "paid",
     },
     {
-      amount: "£ 6,155.91",
+      amount: "6,155.91",
       date: "31 Sep 2021",
       invoiceNumber: "XM9141",
       owner: "Alex Grim",
@@ -40,30 +41,45 @@ const Dashboard = (): JSX.Element => {
   ];
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isEditDrawer, setIsEditDrawer] = useState<boolean>(false);
 
-  const toggleDrawer = () => {
+  const handleDrawerToggler = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
     <div className={styles.root}>
       <Sidebar />
-      <Header DrawerToggler={toggleDrawer} />
-      {cardData.length > 0 ? (
-        cardData.map((card, index) => (
-          <Card
-            key={index}
-            amount={card.amount}
-            date={card.date}
-            invoiceNumber={card.invoiceNumber}
-            owner={card.owner}
-            status={card.status}
-          />
-        ))
-      ) : (
-        <Empty />
+      <Layout>
+        <Header
+          setIsEditDrawer={setIsEditDrawer}
+          handleDrawerToggler={handleDrawerToggler}
+        />
+        {cardData.length > 0 ? (
+          cardData.map((card, index) => (
+            <Card
+              onClick={() => {
+                handleDrawerToggler();
+                setIsEditDrawer(true);
+              }}
+              key={index}
+              amount={card.amount}
+              date={card.date}
+              invoiceNumber={card.invoiceNumber}
+              owner={card.owner}
+              status={card.status}
+            />
+          ))
+        ) : (
+          <Empty />
+        )}
+      </Layout>
+      {isOpen && (
+        <Drawer
+          isEditDrawer={isEditDrawer}
+          handleDrawerToggler={handleDrawerToggler}
+        />
       )}
-      {isOpen && <Drawer DrawerToggler={toggleDrawer} />}
     </div>
   );
 };

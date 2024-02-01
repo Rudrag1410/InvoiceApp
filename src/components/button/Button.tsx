@@ -1,41 +1,42 @@
-import { IconsType } from "assests/types";
 import cx from "classnames";
+import { ButtonProps, Variant } from "./types";
 import styles from "./button.module.scss";
+
 import { getIcons } from "assests";
 
-interface ButtonProps {
-  variant?: "primary" | "danger" | "dark" | "light";
-  classname?: string;
-  children: React.ReactNode;
-  icon?: IconsType;
-  onClick: () => void;
-}
 const Button = ({
-  classname,
-  children,
-  variant = "primary",
   onClick,
+  variant = Variant.Primary,
+  children,
   icon,
+  size,
+  className,
+  ...rest
 }: ButtonProps): JSX.Element => {
+  const classNames = {
+    [styles.isPaddingAllowed]: icon,
+    [styles.justifyContentAllowed]: !icon,
+    [styles.extraLarge]: size === "extraLarge",
+    [styles.largeSize]: size === "large",
+    [styles.mediumSize]: size === "medium",
+    [styles.smallSize]: size === "small",
+    [styles.primary]: variant === "primary",
+    [styles.secondary]: variant === "secondary",
+    [styles.teritiary]: variant === "teritiary",
+    [styles.red]: variant === "red",
+    [styles.white]: variant === "white",
+    [styles.black]: variant === "black",
+  };
+
   return (
-    <div
-      className={cx(
-        styles.customBtn,
-        {
-          [styles.primary]: variant === "primary",
-          [styles.danger]: variant === "danger",
-          [styles.dark]: variant === "dark",
-          [styles.light]: variant === "light",
-        },
-        classname
-      )}
+    <button
+      className={cx(styles.root, classNames, className)}
       onClick={onClick}
+      {...rest}
     >
-      <div className={styles.btnContainer}>
-        {getIcons(icon as IconsType)}
-        {children}
-      </div>
-    </div>
+      {icon && getIcons(icon)}
+      {children}
+    </button>
   );
 };
 

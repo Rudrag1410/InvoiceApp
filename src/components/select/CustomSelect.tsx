@@ -23,7 +23,7 @@ const CustomSelect = ({
   value,
   label,
   placeholder,
-}: SelectProps) => {
+}: SelectProps): JSX.Element => {
   return (
     <div className={styles.container}>
       <Label label={label} />

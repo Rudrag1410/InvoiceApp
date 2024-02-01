@@ -1,17 +1,23 @@
 .invoiceStatus {
+  width: 104px;
   border-radius: 6px;
   padding: 13px 27px;
-  opacity: 0.0571;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  text-transform: capitalize;
+  font-weight: 700;
 }
 .paid {
-  background: $green;
+  background-color: rgba(51, 214, 159, 0.0571);
   color: $green;
 }
 .pending {
-  background: $orange;
+  background: rgba(255, 143, 0, 0.0571);
   color: $orange;
 }
 .draft {
-  background: $blue_dark;
-  color: $blue_dark;
+  background: rgba(55, 59, 83, 0.0571);
+  color: #373b53;
 }

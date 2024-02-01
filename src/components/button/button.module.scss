@@ -1,31 +1,105 @@
-.customBtn {
-  display: inline-block;
-  color: #fff;
-  padding: 17px 28px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
+$primary-color: #7c5dfa;
+$primary-hover: #9277ff;
+$secondary-color: #373b53;
+$tertiary-color: #dfe3fa;
+$red-color: #ec5757;
+$white-color: #f9fafe;
+$black-color: #252945;
+
+.root {
   border: none;
+  text-align: center;
   border-radius: 24px;
-  transition: background-color 0.3s, color 0.3s;
-  .btnContainer {
-    display: flex;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &.isPaddingAllowed {
+    padding: 0 8px;
+  }
+
+  &.justifyContentAllowed {
     justify-content: center;
-    align-items: center;
-    gap: 8px;
   }
 }
+.extraLarge {
+  width: 100%;
+  height: 48px;
+}
+.largeSize {
+  width: 150px;
+  height: 48px;
+}
+
+.mediumSize {
+  width: 131px;
+  height: 48px;
+}
+
+.smallSize {
+  width: fit-content;
+  height: 48px;
+  padding-right: 14px;
+}
+
+.primary,
+.secondary,
+.tertiary,
+.red,
+.white,
+.black {
+  & {
+    @extend .root;
+  }
+}
+
 .primary {
-  background-color: #7c5dfa;
+  background: $primary-color;
+  color: #fff;
+  &:hover {
+    background: $primary-hover;
+  }
 }
-.danger {
-  background-color: #ec5757;
+
+.secondary {
+  background: $secondary-color;
+  &:hover {
+    background: darken($secondary-color, 10%);
+  }
 }
-.dark {
-  background-color: #373b53;
-  color: #888eb0;
+
+.tertiary {
+  color: $tertiary-color;
+  background: $secondary-color;
+  &:hover {
+    background: darken($tertiary-color, 10%);
+  }
 }
-.light {
-  background: #f9fafe;
+
+.red {
+  color: #fff;
+  background: $red-color;
+  &:hover {
+    background: darken($red-color, 10%);
+  }
+}
+
+.white {
+  background: $white-color;
   color: #7e88c3;
+  &:hover {
+    background: darken($white-color, 10%);
+  }
+}
+
+.black {
+  background: $black-color;
+  color: $tertiary-color;
+  &:hover {
+    background: #fff;
+  }
 }

@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
+import { useIsMobile } from "hooks/isMobile";
 import { getIcons } from "assests";
 import styles from "./Dropdown.module.scss";
 import useClickOutside from "hooks/useClickOutside";
 import { IconsType } from "assests/types";
 
-const Dropdown = () => {
+const Dropdown = (): JSX.Element => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -17,11 +18,13 @@ const Dropdown = () => {
   };
 
   useClickOutside(dropdownRef, closeDropdown);
-
+  const isMobile = useIsMobile();
   return (
     <div className={styles.container} ref={dropdownRef}>
       <div onClick={toggleDropdown} className={styles.dropdownHeader}>
-        <span>Filter</span>
+        <span style={{ width: "max-content" }}>
+          {isMobile ? "Filter" : "Filter by status"}
+        </span>
         <span className={styles.icon}>{getIcons(IconsType.arrowUp)}</span>
       </div>
       {dropdownOpen && (

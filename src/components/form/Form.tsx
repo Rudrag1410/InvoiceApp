@@ -1,16 +1,12 @@
 import styles from "./form.module.scss";
 import Input from "components/input";
-import Button from "components/button";
 import { getIcons } from "assests";
 import { IconsType } from "assests/types";
 import CustomSelect from "components/select/CustomSelect";
 import { useState } from "react";
-import FormFooter from "./FormFooter";
+import Button, { Variant } from "components/button";
 
-interface FormProps {
-  DrawerToggler: () => void;
-}
-const Form = ({ DrawerToggler }: FormProps): JSX.Element => {
+const Form = (): JSX.Element => {
   const newItem = {
     qty: "",
     price: "",
@@ -35,64 +31,61 @@ const Form = ({ DrawerToggler }: FormProps): JSX.Element => {
   ];
 
   return (
-    <div className={styles.root}>
-      <div className={styles.container}>
-        <div className={styles.billInfo}>
-          <p>Bill From</p>
-          <div className={styles.input}>
-            <Input label="Street Address" />
-            <div className={styles.qty}>
-              <Input label="City" />
-              <Input label="Post Code" />
-            </div>
-            <Input label="Country" />
+    <div className={styles.container}>
+      <div className={styles.billInfo}>
+        <p>Bill From</p>
+        <div className={styles.input}>
+          <Input label="Street Address" />
+          <div className={styles.qty}>
+            <Input label="City" />
+            <Input label="Post Code" />
           </div>
+          <Input label="Country" />
         </div>
-        <div className={styles.billInfo}>
-          <p>Bill To</p>
-          <div className={styles.input}>
-            <Input label="Client’s Name" />
-            <Input label="Street Address" />
-            <div className={styles.qty}>
-              <Input label="City" />
-              <Input label="Post Code" />
-            </div>
-            <Input label="Country" />
-            <Input label="Invoice Date" type="date" />
-            <CustomSelect options={selectOptions} label="Payment Terms" />
-            <Input label="Project Description" />
-          </div>
-        </div>
-
-        <div className={styles.billInfo}>
-          <p>Item List</p>
-          <div className={styles.input}>
-            <Input label="Item Name" />
-            {item.map((item, index) => (
-              <div className={styles.qty} key={index}>
-                <Input label="Qty." />
-                <Input label="Price" />
-                <Input label="Total" />
-                <div
-                  onClick={() => handleDeleteItem(item)}
-                  className={styles.icon}
-                >
-                  {getIcons(IconsType.delete)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <Button
-          variant="light"
-          onClick={handleAddItemRow}
-          classname={styles.add}
-        >
-          + Add New Item
-        </Button>
       </div>
-      <div className={styles.shadow}></div>
-      <FormFooter DrawerToggler={DrawerToggler} />
+      <div className={styles.billInfo}>
+        <p>Bill To</p>
+        <div className={styles.input}>
+          <Input label="Client’s Name" />
+          <Input label="Street Address" />
+          <div className={styles.qty}>
+            <Input label="City" />
+            <Input label="Post Code" />
+          </div>
+          <Input label="Country" />
+          <Input label="Invoice Date" type="date" />
+          <CustomSelect options={selectOptions} label="Payment Terms" />
+          <Input label="Project Description" />
+        </div>
+      </div>
+
+      <div className={styles.billInfo}>
+        <p>Item List</p>
+        <div className={styles.input}>
+          <Input label="Item Name" />
+          {item.map((item, index) => (
+            <div className={styles.qty} key={index}>
+              <Input label="Qty." />
+              <Input label="Price" />
+              <Input label="Total" />
+              <div
+                onClick={() => handleDeleteItem(item)}
+                className={styles.icon}
+              >
+                {getIcons(IconsType.delete)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Button
+        variant={Variant.White}
+        onClick={handleAddItemRow}
+        size="extraLarge"
+      >
+        + Add New Item
+      </Button>
     </div>
   );
 };
