@@ -1,7 +1,5 @@
 $primary-color: #7c5dfa;
 $primary-hover: #9277ff;
-$secondary-color: #373b53;
-$tertiary-color: #dfe3fa;
 $red-color: #ec5757;
 $white-color: #f9fafe;
 $black-color: #252945;
@@ -41,14 +39,12 @@ $black-color: #252945;
 }
 
 .smallSize {
-  width: fit-content;
+  width: 89px;
   height: 48px;
-  padding-right: 14px;
+  // padding-right: 14px;
 }
 
 .primary,
-.secondary,
-.tertiary,
 .red,
 .white,
 .black {
@@ -62,21 +58,6 @@ $black-color: #252945;
   color: #fff;
   &:hover {
     background: $primary-hover;
-  }
-}
-
-.secondary {
-  background: $secondary-color;
-  &:hover {
-    background: darken($secondary-color, 10%);
-  }
-}
-
-.tertiary {
-  color: $tertiary-color;
-  background: $secondary-color;
-  &:hover {
-    background: darken($tertiary-color, 10%);
   }
 }
 
@@ -98,8 +79,8 @@ $black-color: #252945;
 
 .black {
   background: $black-color;
-  color: $tertiary-color;
+  color: #dfe3fa;
   &:hover {
-    background: #fff;
+    background: darken($black-color, 10%);
   }
 }

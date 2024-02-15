@@ -5,6 +5,9 @@ import { IconsType } from "assests/types";
 import CustomSelect from "components/select/CustomSelect";
 import { useState } from "react";
 import Button, { Variant } from "components/button";
+import { useForm } from "react-hook-form";
+
+import { FormInputs, selectOptions, Label } from "./formConstant";
 
 const Form = (): JSX.Element => {
   const newItem = {
@@ -12,7 +15,6 @@ const Form = (): JSX.Element => {
     price: "",
     total: "",
   };
-
   const [item, setItems] = useState([newItem]);
 
   const handleAddItemRow = () => {
@@ -23,51 +25,117 @@ const Form = (): JSX.Element => {
     setItems((prev) => prev.filter((item) => item !== itemToDelete));
   };
 
-  const selectOptions = [
-    { value: "Net 1 Day", label: "Net 1 Days" },
-    { value: "Net 7 Days", label: "Net 7 Days" },
-    { value: "14 Days", label: "Net 14 Days" },
-    { value: "30 Days", label: "Net 30 Days" },
-  ];
+  const { handleSubmit, register } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
-    <div className={styles.container}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
       <div className={styles.billInfo}>
         <p>Bill From</p>
         <div className={styles.input}>
-          <Input label="Street Address" />
+          <Input
+            label={Label.STREET_ADDRESS}
+            {...register(FormInputs.FROM_STREET_ADDRESS)}
+            id={FormInputs.FROM_STREET_ADDRESS}
+          />
+
           <div className={styles.qty}>
-            <Input label="City" />
-            <Input label="Post Code" />
+            <Input
+              label={Label.CITY}
+              {...register(FormInputs.FROM_CITY)}
+              id={FormInputs.FROM_CITY}
+            />
+            <Input
+              label={Label.POST_CODE}
+              {...register(FormInputs.FROM_POST_CODE)}
+              id={FormInputs.FROM_POST_CODE}
+            />
           </div>
-          <Input label="Country" />
+          <Input
+            label={Label.COUNTRY}
+            {...register(FormInputs.FROM_COUNTRY)}
+            id={FormInputs.FROM_COUNTRY}
+          />
         </div>
       </div>
+
       <div className={styles.billInfo}>
         <p>Bill To</p>
         <div className={styles.input}>
-          <Input label="Client’s Name" />
-          <Input label="Street Address" />
+          <Input
+            label={Label.CLIENT_NAME}
+            {...register(FormInputs.CLIENT_NAME)}
+            id={FormInputs.CLIENT_NAME}
+          />
+          <Input
+            label={Label.STREET_ADDRESS}
+            {...register(FormInputs.TO_STREET_ADDRESS)}
+            id={FormInputs.TO_STREET_ADDRESS}
+          />
           <div className={styles.qty}>
-            <Input label="City" />
-            <Input label="Post Code" />
+            <Input
+              label={Label.CITY}
+              {...register(FormInputs.TO_CITY)}
+              id={FormInputs.TO_CITY}
+            />
+            <Input
+              label={Label.POST_CODE}
+              {...register(FormInputs.TO_POST_CODE)}
+              id={FormInputs.TO_POST_CODE}
+            />
           </div>
-          <Input label="Country" />
-          <Input label="Invoice Date" type="date" />
-          <CustomSelect options={selectOptions} label="Payment Terms" />
-          <Input label="Project Description" />
+          <Input
+            label={Label.COUNTRY}
+            {...register(FormInputs.TO_COUNTRY)}
+            id={FormInputs.TO_COUNTRY}
+          />
+          <Input
+            label={Label.INVOICE_DATE}
+            type="date"
+            {...register(FormInputs.DATE)}
+          />
+
+          <CustomSelect
+            options={selectOptions}
+            label={Label.PAYMENT_TERMS}
+            {...register(FormInputs.PAYMENT)}
+          />
+          <Input
+            label={Label.DESCRIPTION}
+            {...register(FormInputs.DESCRIPTION)}
+            id={FormInputs.DESCRIPTION}
+          />
         </div>
       </div>
 
       <div className={styles.billInfo}>
         <p>Item List</p>
         <div className={styles.input}>
-          <Input label="Item Name" />
+          <Input
+            label={Label.ITEM_NAME}
+            {...register(FormInputs.ITEM_NAME)}
+            id={FormInputs.ITEM_NAME}
+          />
           {item.map((item, index) => (
             <div className={styles.qty} key={index}>
-              <Input label="Qty." />
-              <Input label="Price" />
-              <Input label="Total" />
+              <Input
+                label={Label.QTY}
+                {...register(FormInputs.QTY)}
+                id={FormInputs.QTY}
+              />
+              <Input
+                label={Label.PRICE}
+                {...register(FormInputs.PRICE)}
+                id={FormInputs.PRICE}
+              />
+              <Input
+                label={Label.TOTAL}
+                {...register(FormInputs.TOTAL_AMOUNT)}
+                id={FormInputs.TOTAL_AMOUNT}
+              />
               <div
                 onClick={() => handleDeleteItem(item)}
                 className={styles.icon}
@@ -77,16 +145,16 @@ const Form = (): JSX.Element => {
             </div>
           ))}
         </div>
+        <Button
+          variant={Variant.White}
+          onClick={handleAddItemRow}
+          size="extraLarge"
+          className={styles.addBtn}
+        >
+          + Add New Item
+        </Button>
       </div>
-
-      <Button
-        variant={Variant.White}
-        onClick={handleAddItemRow}
-        size="extraLarge"
-      >
-        + Add New Item
-      </Button>
-    </div>
+    </form>
   );
 };
 export default Form;

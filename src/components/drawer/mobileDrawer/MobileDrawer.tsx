@@ -1,5 +1,5 @@
 import Form from "components/form";
-import styles from "./drawer.module.scss";
+import styles from "./mobileDrawer.module.scss";
 import Back from "components/back";
 import FormFooter from "components/form/FormFooter";
 interface DrawerProps {

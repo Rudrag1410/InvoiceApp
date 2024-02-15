@@ -21,8 +21,6 @@ const Button = ({
     [styles.mediumSize]: size === "medium",
     [styles.smallSize]: size === "small",
     [styles.primary]: variant === "primary",
-    [styles.secondary]: variant === "secondary",
-    [styles.teritiary]: variant === "teritiary",
     [styles.red]: variant === "red",
     [styles.white]: variant === "white",
     [styles.black]: variant === "black",

@@ -20,12 +20,14 @@
       gap: 16px;
       align-items: center;
       width: 100%;
-      margin-bottom: 40px;
       .icon {
         margin-top: 20px;
         cursor: pointer;
       }
     }
+  }
+  .addBtn {
+    margin-top: 18px;
   }
 }
 .buttonWrapper {

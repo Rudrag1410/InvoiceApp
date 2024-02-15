@@ -1,0 +1,128 @@
+.root {
+  .back {
+    margin-bottom: 32px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+
+    .headRoot {
+      width: 100%;
+      padding: 25px 24px;
+      border-radius: 8px;
+      box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.1);
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .status {
+        color: #858bb2;
+      }
+      .buttonWrapper {
+        display: flex;
+        justify-content: space-between;
+        white-space: nowrap;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+    .bottomRoot {
+      width: 100%;
+      padding: 25px 24px;
+      border-radius: 8px;
+      box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.1);
+      background-color: #fff;
+      white-space: nowrap;
+
+      .text {
+        color: #7e88c3;
+        margin-top: 4px;
+      }
+
+      .bottomTop {
+        margin-bottom: 30px;
+      }
+
+      .address {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 31px;
+      }
+      .billingInfo {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 54px;
+        margin-bottom: 36px;
+        .date {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+
+          .dateContent {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+        }
+        .billing {
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+      .email {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 40px;
+      }
+      .receiptRoot {
+        padding: 24px;
+        width: 100%;
+        background-color: #f9fafe;
+        border-radius: 16px 16px 0 0;
+
+        .receiptContainer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 24px;
+
+          .receiptContentLeft {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+        }
+      }
+      .footer {
+        padding: 31px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #373b53;
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+        font-size: 20px;
+        .textLeft {
+          font-size: 11px;
+          font-weight: 500;
+          line-height: 1.64;
+          letter-spacing: -0.23px;
+        }
+        .textRight {
+          line-height: 1.6;
+          letter-spacing: -0.42px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { getIcons } from "assests";
 import styles from "./Dropdown.module.scss";
 import useClickOutside from "hooks/useClickOutside";
 import { IconsType } from "assests/types";
+import Typography from "components/typography";
 
 const Dropdown = (): JSX.Element => {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -17,6 +18,11 @@ const Dropdown = (): JSX.Element => {
     setDropdownOpen(false);
   };
 
+  const checkboxData = [
+    { id: "draft", label: "Draft" },
+    { id: "paid", label: "Paid" },
+    { id: "pending", label: "Pending" },
+  ];
   useClickOutside(dropdownRef, closeDropdown);
   const isMobile = useIsMobile();
   return (
@@ -29,11 +35,20 @@ const Dropdown = (): JSX.Element => {
       </div>
       {dropdownOpen && (
         <div className={styles.dropdownBox}>
-          <div className={styles.dropdownBoxChildren}>
-            <span>Draft</span>
-            <span>Pending</span>
-            <span>Paid</span>
-          </div>
+          {checkboxData.map((checkbox) => (
+            <div key={checkbox.id} className={styles.dropdownBoxChild}>
+              <input
+                type="checkbox"
+                id={checkbox.id}
+                className={styles.checkboxInput}
+              />
+              <label htmlFor={checkbox.id} className={styles.label}>
+                <Typography variant="spartan_medium">
+                  {checkbox.label}
+                </Typography>
+              </label>
+            </div>
+          ))}
         </div>
       )}
     </div>
