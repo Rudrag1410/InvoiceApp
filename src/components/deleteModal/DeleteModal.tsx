@@ -1,4 +1,4 @@
-import button, { Variant } from "components/button";
+import { Variant } from "components/button";
 import styles from "./deleteModal.module.scss";
 import Button from "components/button";
 import Typography from "components/typography";

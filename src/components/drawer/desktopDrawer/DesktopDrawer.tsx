@@ -1,7 +1,7 @@
-import Form from "components/form";
+import FormFooter from "components/form/FormFooter";
+import { Form } from "components/form";
 import styles from "./desktopDrawer.module.scss";
 import Back from "components/back";
-import FormFooter from "components/form/FormFooter";
 import useClickOutside from "hooks/useClickOutside";
 import { useRef } from "react";
 interface DrawerProps {
@@ -18,7 +18,7 @@ const DesktopDrawer = ({ handleDrawerToggler, isEditDrawer }: DrawerProps) => {
     <>
       <div className={styles.overlay}></div>
       <div className={styles.container} ref={drawerRef}>
-        <Back DrawerToggler={handleDrawerToggler} />
+        <Back MoveToPrevRoute={handleDrawerToggler} />
         <span className={styles.formHeading}>
           {isEditDrawer ? <div>Edit #XM9141</div> : "New Invoice"}
         </span>

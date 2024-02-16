@@ -3,11 +3,15 @@ import styles from "./view.module.scss";
 import cx from "classnames";
 import Receipt from "./Receipt";
 
-const ViewBottom = () => {
+interface ViewBottomProps {
+  id: string;
+  handleDelete: VoidFunction;
+}
+const ViewBottom = ({ id, handleDelete }: ViewBottomProps): JSX.Element => {
   return (
     <div className={styles.bottomRoot}>
       <div className={styles.bottomTop}>
-        <Typography variant="spartan_bold">#XM9141</Typography>
+        <Typography variant="spartan_bold">#{id}</Typography>
         <Typography variant="spartan_medium" classname={styles.text}>
           Graphic Design
         </Typography>
@@ -57,7 +61,7 @@ const ViewBottom = () => {
         <Typography variant="spartan_bold">alexgrim@mail.com</Typography>
       </div>
 
-      <Receipt />
+      <Receipt handleDelete={handleDelete} />
     </div>
   );
 };

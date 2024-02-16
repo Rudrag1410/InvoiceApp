@@ -1,14 +1,13 @@
-import Button, { Variant } from "components/button";
 import styles from "./view.module.scss";
 import InvoiceStatus from "components/invoiceStatus";
 import Typography from "components/typography";
+import ViewButtonWrapper from "./components/viewButton";
 import { useIsMobile } from "hooks/isMobile";
 
 interface ViewHeadProps {
   handleDelete: VoidFunction;
-  handleEdit: VoidFunction;
 }
-const ViewHead = ({ handleDelete, handleEdit }: ViewHeadProps): JSX.Element => {
+const ViewHead = ({ handleDelete }: ViewHeadProps): JSX.Element => {
   const isMobile = useIsMobile();
   return (
     <div className={styles.headRoot}>
@@ -18,19 +17,8 @@ const ViewHead = ({ handleDelete, handleEdit }: ViewHeadProps): JSX.Element => {
       <InvoiceStatus variant="paid" classname={styles.text}>
         Paid
       </InvoiceStatus>
-      {!isMobile && (
-        <div className={styles.buttonWrapper}>
-          <Button size="small" variant={Variant.White} onClick={handleEdit}>
-            <Typography variant="spartan_bold">Edit</Typography>
-          </Button>
-          <Button size="small" variant={Variant.Red} onClick={handleDelete}>
-            <Typography variant="spartan_bold">Delete</Typography>
-          </Button>
-          <Button size="large" value={Variant.Primary}>
-            <Typography variant="spartan_bold">Mark as Paid</Typography>
-          </Button>
-        </div>
-      )}
+
+      {!isMobile && <ViewButtonWrapper handleDelete={handleDelete} />}
     </div>
   );
 };

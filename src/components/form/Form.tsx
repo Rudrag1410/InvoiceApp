@@ -1,13 +1,14 @@
 import styles from "./form.module.scss";
-import Input from "components/input";
-import { getIcons } from "assests";
-import { IconsType } from "assests/types";
-import CustomSelect from "components/select/CustomSelect";
 import { useState } from "react";
-import Button, { Variant } from "components/button";
 import { useForm } from "react-hook-form";
 
-import { FormInputs, selectOptions, Label } from "./formConstant";
+import { getIcons } from "assests";
+import { IconsType } from "assests/types";
+import CustomSelect from "components/select";
+import Input from "components/input";
+import Button, { Variant } from "components/button";
+
+import { FormInputs, Label, selectOptions } from "constants/Form.constants";
 
 const Form = (): JSX.Element => {
   const newItem = {

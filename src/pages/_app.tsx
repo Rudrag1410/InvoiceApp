@@ -2,6 +2,7 @@ import { getSSRDeviceType, SSRDeviceContext } from "hooks/isMobile";
 import type { AppContext, AppProps } from "next/app";
 import { League_Spartan } from "next/font/google";
 import "../styles/globals.scss";
+import Layout from "components/layout";
 
 const league = League_Spartan({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -19,23 +20,25 @@ interface MyAppProps extends AppProps {
 
 function App({ Component, pageProps, isSsrMobile, isSsrTablet }: MyAppProps) {
   return (
-    <>
-      <SSRDeviceContext.Provider
-        value={{
-          isSsrMobile,
-          isSsrTablet,
-        }}
-      >
-        <style jsx global>
-          {`
-            :root {
-              --font-league: ${league.style.fontFamily};
-            }
-          `}
-        </style>
-        <Component {...pageProps} />
-      </SSRDeviceContext.Provider>
-    </>
+    <Layout>
+      <div className="root">
+        <SSRDeviceContext.Provider
+          value={{
+            isSsrMobile,
+            isSsrTablet,
+          }}
+        >
+          <style jsx global>
+            {`
+              :root {
+                --font-league: ${league.style.fontFamily};
+              }
+            `}
+          </style>
+          <Component {...pageProps} />
+        </SSRDeviceContext.Provider>
+      </div>
+    </Layout>
   );
 }
 

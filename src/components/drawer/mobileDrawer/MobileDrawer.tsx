@@ -1,6 +1,6 @@
-import Form from "components/form";
 import styles from "./mobileDrawer.module.scss";
 import Back from "components/back";
+import { Form } from "components/form";
 import FormFooter from "components/form/FormFooter";
 interface DrawerProps {
   handleDrawerToggler: () => void;
@@ -12,7 +12,7 @@ const Drawer = ({
 }: DrawerProps): JSX.Element => {
   return (
     <div className={styles.root}>
-      <Back DrawerToggler={handleDrawerToggler} />
+      <Back MoveToPrevRoute={handleDrawerToggler} />
       <span className={styles.formHeading}>
         {isEditDrawer ? <div>Edit #XM9141</div> : "New Invoice"}
       </span>

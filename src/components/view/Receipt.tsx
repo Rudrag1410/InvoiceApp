@@ -1,6 +1,14 @@
 import Typography from "components/typography";
 import styles from "./view.module.scss";
-const Receipt = () => {
+import { useIsMobile } from "hooks/isMobile";
+import ViewButtonWrapper from "./components/viewButton/ViewButtonWrapper";
+
+interface ReceiptProps {
+  handleDelete: VoidFunction;
+}
+const Receipt = ({ handleDelete }: ReceiptProps): JSX.Element => {
+  const isMobile = useIsMobile();
+
   return (
     <>
       <div className={styles.receiptRoot}>
@@ -37,6 +45,7 @@ const Receipt = () => {
           £ 156.00
         </Typography>
       </div>
+      {isMobile && <ViewButtonWrapper handleDelete={handleDelete} />}
     </>
   );
 };

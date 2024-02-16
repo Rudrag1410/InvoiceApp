@@ -4,30 +4,34 @@ import ViewHead from "./ViewHead";
 import ViewBottom from "./ViewBottom";
 import DeleteModal from "components/deleteModal";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 interface ViewProps {
-  handleDrawerToggler: () => void;
-  onClick?: VoidFunction;
+  id: string;
 }
-const View = ({ handleDrawerToggler }: ViewProps) => {
+const View = ({ id }: ViewProps): JSX.Element => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
+  const { back } = useRouter();
+
   const handleDeleteInvoice = () => {
+    // TODO: implement delete invoice
     console.log("Deleting invoice...");
     setOpenDeleteModal((prev) => !prev);
   };
+  const handlePrevRoute = () => {
+    back();
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.back}>
-        <Back DrawerToggler={handleDrawerToggler} />
+        <Back MoveToPrevRoute={handlePrevRoute} />
       </div>
 
       <div className={styles.container}>
-        <ViewHead
-          handleDelete={() => setOpenDeleteModal(true)}
-          handleEdit={handleDrawerToggler}
-        />
-        <ViewBottom />
+        <ViewHead handleDelete={() => setOpenDeleteModal(true)} />
+        <ViewBottom id={id} handleDelete={() => setOpenDeleteModal(true)} />
       </div>
 
       {openDeleteModal && (

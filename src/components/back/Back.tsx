@@ -3,11 +3,11 @@ import styles from "./back.module.scss";
 import { IconsType } from "assests/types";
 import Typography from "components/typography";
 interface BackProps {
-  DrawerToggler: () => void;
+  MoveToPrevRoute: () => void;
 }
-const Back = ({ DrawerToggler }: BackProps): JSX.Element => {
+const Back = ({ MoveToPrevRoute }: BackProps): JSX.Element => {
   const back = () => {
-    DrawerToggler();
+    MoveToPrevRoute();
   };
   return (
     <div className={styles.root} onClick={back}>

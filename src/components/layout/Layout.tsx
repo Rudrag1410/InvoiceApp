@@ -1,3 +1,4 @@
+import Sidebar from "components/sidebar";
 import styles from "./layout.module.scss";
 
 interface LayoutProps {
@@ -5,7 +6,14 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <>
+      <div className={styles.container}>
+        <Sidebar />
+        {children}
+      </div>
+    </>
+  );
 };
 
 export default Layout;
