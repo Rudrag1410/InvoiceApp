@@ -6,9 +6,13 @@ import { useIsMobile } from "hooks/isMobile";
 
 interface ViewHeadProps {
   handleDelete: VoidFunction;
+  editMode?: boolean;
 }
-const ViewHead = ({ handleDelete }: ViewHeadProps): JSX.Element => {
+const ViewHead = ({ handleDelete, editMode }: ViewHeadProps): JSX.Element => {
   const isMobile = useIsMobile();
+  const handleEditMode = () => {
+    editMode(true);
+  };
   return (
     <div className={styles.headRoot}>
       <Typography variant="spartan_medium" classname={styles.status}>
@@ -18,7 +22,12 @@ const ViewHead = ({ handleDelete }: ViewHeadProps): JSX.Element => {
         Paid
       </InvoiceStatus>
 
-      {!isMobile && <ViewButtonWrapper handleDelete={handleDelete} />}
+      {!isMobile && (
+        <ViewButtonWrapper
+          handleDelete={handleDelete}
+          handleEditMode={handleEditMode}
+        />
+      )}
     </div>
   );
 };

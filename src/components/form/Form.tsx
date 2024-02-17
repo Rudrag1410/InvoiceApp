@@ -9,8 +9,13 @@ import Input from "components/input";
 import Button, { Variant } from "components/button";
 
 import { FormInputs, Label, selectOptions } from "constants/Form.constants";
+import FormFooter from "./FormFooter";
 
-const Form = (): JSX.Element => {
+interface FormProps {
+  handleDrawerToggler: () => void;
+}
+
+const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
   const newItem = {
     qty: "",
     price: "",
@@ -147,6 +152,7 @@ const Form = (): JSX.Element => {
           ))}
         </div>
         <Button
+          type="button"
           variant={Variant.White}
           onClick={handleAddItemRow}
           size="extraLarge"
@@ -155,6 +161,7 @@ const Form = (): JSX.Element => {
           + Add New Item
         </Button>
       </div>
+      <FormFooter DrawerToggler={handleDrawerToggler} />
     </form>
   );
 };

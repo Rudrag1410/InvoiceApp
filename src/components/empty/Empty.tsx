@@ -1,7 +1,10 @@
-import { IconsType } from "assests/types";
 import styles from "./empty.module.scss";
+
+import { IconsType } from "assests/types";
 import { getIcons } from "assests";
+
 import Typography from "components/typography";
+
 const Empty = (): JSX.Element => {
   return (
     <div className={styles.root}>

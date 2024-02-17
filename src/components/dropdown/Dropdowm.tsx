@@ -1,8 +1,9 @@
+import styles from "./Dropdown.module.scss";
+
 import { useRef, useState } from "react";
 import { useIsMobile } from "hooks/isMobile";
-import { getIcons } from "assests";
-import styles from "./Dropdown.module.scss";
 import useClickOutside from "hooks/useClickOutside";
+import { getIcons } from "assests";
 import { IconsType } from "assests/types";
 import Typography from "components/typography";
 

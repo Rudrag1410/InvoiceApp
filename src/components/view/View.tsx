@@ -1,10 +1,15 @@
-import Back from "components/back";
 import styles from "./view.module.scss";
-import ViewHead from "./ViewHead";
-import ViewBottom from "./ViewBottom";
-import DeleteModal from "components/deleteModal";
+
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useIsMobile } from "hooks/isMobile";
+
+import ViewHead from "./ViewHead";
+import ViewBottom from "./ViewBottom";
+import Back from "components/back";
+import DeleteModal from "components/deleteModal";
+import MobileDrawer from "components/drawer/mobileDrawer";
+import DesktopDrawer from "components/drawer/desktopDrawer";
 
 interface ViewProps {
   id: string;
@@ -12,13 +17,21 @@ interface ViewProps {
 const View = ({ id }: ViewProps): JSX.Element => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isEditDrawer, setIsEditDrawer] = useState<boolean>(false);
+
+  const handleDrawerToggler = () => {
+    setIsOpen((prev) => !prev);
+  };
   const { back } = useRouter();
+  const isMobile = useIsMobile();
 
   const handleDeleteInvoice = () => {
     // TODO: implement delete invoice
     console.log("Deleting invoice...");
     setOpenDeleteModal((prev) => !prev);
   };
+
   const handlePrevRoute = () => {
     back();
   };
@@ -40,6 +53,20 @@ const View = ({ id }: ViewProps): JSX.Element => {
           onDelete={handleDeleteInvoice}
         />
       )}
+      {isMobile
+        ? isOpen && (
+            <MobileDrawer
+              isEditDrawer={isEditDrawer}
+              handleDrawerToggler={handleDrawerToggler}
+            />
+          )
+        : isOpen && (
+            <DesktopDrawer
+              isEditDrawer={isEditDrawer}
+              handleDrawerToggler={handleDrawerToggler}
+              id={id}
+            />
+          )}
     </div>
   );
 };

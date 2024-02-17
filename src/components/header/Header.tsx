@@ -1,11 +1,13 @@
-import React, { useCallback, useState } from "react";
-import { useIsMobile } from "hooks/isMobile";
-import Typography from "components/typography";
 import styles from "./header.module.scss";
 
-import { IconsType } from "assests/types";
+import React, { useCallback } from "react";
+
+import { useIsMobile } from "hooks/isMobile";
+import Typography from "components/typography";
 import Dropdown from "components/dropdown";
 import Button, { Variant } from "components/button";
+
+import { IconsType } from "assests/types";
 
 interface HeaderProps {
   handleDrawerToggler: () => void;

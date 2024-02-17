@@ -1,6 +1,5 @@
 import Button, { Variant } from "components/button";
 import styles from "./form.module.scss";
-import SpacingDivider from "components/spacingDivider";
 
 interface FormFooterProps {
   DrawerToggler: () => void;
@@ -10,25 +9,22 @@ const FormFooter = ({ DrawerToggler }: FormFooterProps): JSX.Element => {
     DrawerToggler();
   };
 
-  const handleDraft = () => {
-    console.log("Form Is Save as Draft");
-  };
-
-  const handleSave = () => {
-    console.log("Form is Save");
-  };
-
   return (
     <>
       <div className={styles.shadow}></div>
       <div className={styles.buttonWrapper}>
-        <Button variant={Variant.White} size="large" onClick={handleDiscard}>
+        <Button
+          variant={Variant.White}
+          size="large"
+          onClick={handleDiscard}
+          type="button"
+        >
           Discard
         </Button>
-        <Button variant={Variant.Black} size="large">
+        <Button variant={Variant.Black} size="large" type="button">
           Save as Draft
         </Button>
-        <Button variant={Variant.Primary} size="large">
+        <Button variant={Variant.Primary} size="large" type="submit">
           Save & Send
         </Button>
       </div>

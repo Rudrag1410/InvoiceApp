@@ -1,29 +1,34 @@
-import FormFooter from "components/form/FormFooter";
-import { Form } from "components/form";
 import styles from "./desktopDrawer.module.scss";
-import Back from "components/back";
-import useClickOutside from "hooks/useClickOutside";
+
 import { useRef } from "react";
+import useClickOutside from "hooks/useClickOutside";
+
+import Back from "components/back";
+import { Form } from "components/form";
 interface DrawerProps {
   handleDrawerToggler: () => void;
   isEditDrawer: boolean;
+  id?: string;
 }
-const DesktopDrawer = ({ handleDrawerToggler, isEditDrawer }: DrawerProps) => {
+const DesktopDrawer = ({
+  handleDrawerToggler,
+  isEditDrawer,
+  id,
+}: DrawerProps) => {
   const drawerRef = useRef<HTMLDivElement>(null);
-  const closeDraweer = () => {
+  const closeDrawer = () => {
     handleDrawerToggler();
   };
-  useClickOutside(drawerRef, closeDraweer);
+  useClickOutside(drawerRef, closeDrawer);
   return (
     <>
       <div className={styles.overlay}></div>
       <div className={styles.container} ref={drawerRef}>
         <Back MoveToPrevRoute={handleDrawerToggler} />
         <span className={styles.formHeading}>
-          {isEditDrawer ? <div>Edit #XM9141</div> : "New Invoice"}
+          {isEditDrawer ? <div>Edit #{id}</div> : "New Invoice"}
         </span>
-        <Form />
-        <FormFooter DrawerToggler={handleDrawerToggler} />
+        <Form handleDrawerToggler={handleDrawerToggler} />
       </div>
     </>
   );
