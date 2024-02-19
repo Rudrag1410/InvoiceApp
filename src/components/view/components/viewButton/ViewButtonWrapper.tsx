@@ -4,13 +4,17 @@ import styles from "./buttonWrapper.module.scss";
 
 interface ViewButtonProps {
   handleDelete: VoidFunction;
+  handleEdit: VoidFunction;
 }
 
-const ViewButtonWrapper = ({ handleDelete }: ViewButtonProps): JSX.Element => {
+const ViewButtonWrapper = ({
+  handleDelete,
+  handleEdit,
+}: ViewButtonProps): JSX.Element => {
   return (
     <>
       <div className={styles.buttonWrapper}>
-        <Button size="medium" variant={Variant.White}>
+        <Button size="medium" variant={Variant.White} onClick={handleEdit}>
           <Typography variant="spartan_bold">Edit</Typography>
         </Button>
         <Button size="medium" variant={Variant.Red} onClick={handleDelete}>

@@ -8,8 +8,6 @@ import Empty from "components/empty";
 import MobileDrawer from "components/drawer/mobileDrawer";
 import DesktopDrawer from "components/drawer/desktopDrawer";
 
-import { cardData } from "constants/CardData";
-
 const Dashboard = (): JSX.Element => {
   const { push } = useRouter();
 
@@ -17,6 +15,7 @@ const Dashboard = (): JSX.Element => {
 
   const [isEditDrawer, setIsEditDrawer] = useState<boolean>(false);
 
+  const [cardData, setCardData] = useState([]);
   const isMobile = useIsMobile();
 
   const handleDrawerToggler = () => {
@@ -25,6 +24,21 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <>
+      {isMobile
+        ? isOpen && (
+            <MobileDrawer
+              setCardData={setCardData}
+              isEditDrawer={isEditDrawer}
+              handleDrawerToggler={handleDrawerToggler}
+            />
+          )
+        : isOpen && (
+            <DesktopDrawer
+              isEditDrawer={isEditDrawer}
+              setCardData={setCardData}
+              handleDrawerToggler={handleDrawerToggler}
+            />
+          )}
       <Header
         setIsEditDrawer={setIsEditDrawer}
         handleDrawerToggler={handleDrawerToggler}
@@ -34,32 +48,19 @@ const Dashboard = (): JSX.Element => {
         cardData.map((card, index) => (
           <Card
             onClick={() => {
-              push(`/invoice/${card.invoiceNumber}`);
+              push(`/invoice/${card?.invoiceNumber}`);
             }}
             key={index}
-            amount={card.amount}
-            date={card.date}
-            invoiceNumber={card.invoiceNumber}
-            owner={card.owner}
-            status={card.status}
+            amount={card?.price}
+            date={card?.date}
+            invoiceNumber="1"
+            owner={card?.clientName}
+            status={card?.status}
           />
         ))
       ) : (
         <Empty />
       )}
-      {isMobile
-        ? isOpen && (
-            <MobileDrawer
-              isEditDrawer={isEditDrawer}
-              handleDrawerToggler={handleDrawerToggler}
-            />
-          )
-        : isOpen && (
-            <DesktopDrawer
-              isEditDrawer={isEditDrawer}
-              handleDrawerToggler={handleDrawerToggler}
-            />
-          )}
     </>
   );
 };

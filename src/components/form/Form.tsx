@@ -1,21 +1,27 @@
 import styles from "./form.module.scss";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import { getIcons } from "assests";
 import { IconsType } from "assests/types";
 import CustomSelect from "components/select";
 import Input from "components/input";
 import Button, { Variant } from "components/button";
-
-import { FormInputs, Label, selectOptions } from "constants/Form.constants";
 import FormFooter from "./FormFooter";
+
+import {
+  FormInputs,
+  FormInputsType,
+  Label,
+  selectOptions,
+} from "constants/Form.constants";
 
 interface FormProps {
   handleDrawerToggler: () => void;
+  setCardData: React.Dispatch<React.SetStateAction<Array<FormInputsType>>>;
 }
 
-const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
+const Form = ({ handleDrawerToggler, setCardData }: FormProps): JSX.Element => {
   const newItem = {
     qty: "",
     price: "",
@@ -31,9 +37,12 @@ const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
     setItems((prev) => prev.filter((item) => item !== itemToDelete));
   };
 
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, control } = useForm();
 
   const onSubmit = (data: any) => {
+    handleDrawerToggler();
+    const formData = Object.values(data);
+    setCardData(formData);
     console.log(data);
   };
 
@@ -44,7 +53,7 @@ const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
         <div className={styles.input}>
           <Input
             label={Label.STREET_ADDRESS}
-            {...register(FormInputs.FROM_STREET_ADDRESS)}
+            {...register(FormInputs.FROM_STREET_ADDRESS, { required: true })}
             id={FormInputs.FROM_STREET_ADDRESS}
           />
 
@@ -104,11 +113,24 @@ const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
             {...register(FormInputs.DATE)}
           />
 
-          <CustomSelect
-            options={selectOptions}
-            label={Label.PAYMENT_TERMS}
-            {...register(FormInputs.PAYMENT)}
+          <Controller
+            name={FormInputs.PAYMENT}
+            control={control}
+            render={({ field }) => {
+              const { onChange, value } = field;
+              return (
+                <CustomSelect
+                  id="payment"
+                  control={control}
+                  label={Label.PAYMENT_TERMS}
+                  onChange={onChange}
+                  options={selectOptions}
+                  value={value}
+                />
+              );
+            }}
           />
+
           <Input
             label={Label.DESCRIPTION}
             {...register(FormInputs.DESCRIPTION)}
@@ -137,17 +159,18 @@ const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
                 {...register(FormInputs.PRICE)}
                 id={FormInputs.PRICE}
               />
+
               <Input
                 label={Label.TOTAL}
                 {...register(FormInputs.TOTAL_AMOUNT)}
                 id={FormInputs.TOTAL_AMOUNT}
               />
-              <div
+              <span
                 onClick={() => handleDeleteItem(item)}
                 className={styles.icon}
               >
                 {getIcons(IconsType.delete)}
-              </div>
+              </span>
             </div>
           ))}
         </div>
@@ -161,6 +184,7 @@ const Form = ({ handleDrawerToggler }: FormProps): JSX.Element => {
           + Add New Item
         </Button>
       </div>
+
       <FormFooter DrawerToggler={handleDrawerToggler} />
     </form>
   );

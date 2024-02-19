@@ -9,31 +9,34 @@ export interface SelectDropDownProps {
   label: string;
 }
 
-interface CustomSelectProps {
-  options?: SelectDropDownProps[];
+interface SelectProps {
   value?: SelectDropDownProps;
-  label?: string;
-  placeholder?: string;
-  required?: boolean;
-  rest?: any;
+  options?: SelectDropDownProps[];
+  label: string;
+  id: string;
+  onChange?: VoidFunction;
+  control?: any;
 }
-
-const CustomSelect = React.forwardRef<HTMLSelectElement, CustomSelectProps>(
-  ({ options, value, label, placeholder, rest }, ref) => {
-    return (
-      <div className={styles.container}>
-        <Label label={label} />
-        <Select
-          placeholder={placeholder}
-          className={styles.select}
-          value={value}
-          options={options}
-          ref={ref}
-          {...rest}
-        />
-      </div>
-    );
-  }
-);
+const CustomSelect = ({
+  options,
+  value,
+  label,
+  id,
+  control,
+  onChange,
+}: SelectProps) => {
+  return (
+    <div className={styles.container}>
+      <Label label={label} />
+      <Select
+        className={styles.select}
+        value={value}
+        options={options}
+        id={id}
+        onChange={onChange}
+      />
+    </div>
+  );
+};
 
 export default CustomSelect;

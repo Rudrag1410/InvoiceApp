@@ -5,15 +5,18 @@ import useClickOutside from "hooks/useClickOutside";
 
 import Back from "components/back";
 import { Form } from "components/form";
+import { FormInputsType } from "constants/Form.constants";
 interface DrawerProps {
   handleDrawerToggler: () => void;
   isEditDrawer: boolean;
   id?: string;
+  setCardData: React.Dispatch<React.SetStateAction<Array<FormInputsType>>>;
 }
 const DesktopDrawer = ({
   handleDrawerToggler,
   isEditDrawer,
   id,
+  setCardData,
 }: DrawerProps) => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const closeDrawer = () => {
@@ -28,7 +31,10 @@ const DesktopDrawer = ({
         <span className={styles.formHeading}>
           {isEditDrawer ? <div>Edit #{id}</div> : "New Invoice"}
         </span>
-        <Form handleDrawerToggler={handleDrawerToggler} />
+        <Form
+          handleDrawerToggler={handleDrawerToggler}
+          setCardData={setCardData}
+        />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { useIsMobile } from "hooks/isMobile";
-import styles from "./card.module.scss";
+
 import MobileCard from "./components/mobileCard/MobileCard";
 import DesktopCard from "./components/desktopCard";
 
@@ -23,7 +23,7 @@ const Card = ({
   const isMobile = useIsMobile();
 
   return (
-    <div className={styles.root}>
+    <>
       {isMobile ? (
         <MobileCard
           amount={amount}
@@ -43,7 +43,7 @@ const Card = ({
           status={status}
         />
       )}
-    </div>
+    </>
   );
 };
 

@@ -6,8 +6,13 @@ import Receipt from "./Receipt";
 interface ViewBottomProps {
   id: string;
   handleDelete: VoidFunction;
+  handleDrawerToggler: () => void;
 }
-const ViewBottom = ({ id, handleDelete }: ViewBottomProps): JSX.Element => {
+const ViewBottom = ({
+  id,
+  handleDelete,
+  handleDrawerToggler,
+}: ViewBottomProps): JSX.Element => {
   return (
     <div className={styles.bottomRoot}>
       <div className={styles.bottomTop}>
@@ -61,7 +66,10 @@ const ViewBottom = ({ id, handleDelete }: ViewBottomProps): JSX.Element => {
         <Typography variant="spartan_bold">alexgrim@mail.com</Typography>
       </div>
 
-      <Receipt handleDelete={handleDelete} />
+      <Receipt
+        handleDelete={handleDelete}
+        handleDrawerToggler={handleDrawerToggler}
+      />
     </div>
   );
 };

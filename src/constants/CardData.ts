@@ -18,6 +18,20 @@ export const cardData: ICardResponse[] = [
       date: "19 Aug 2024",
       invoiceNumber: "RT3080",
       owner: "Jensen Huang",
+      status: "paid",
+   },
+   {
+      amount: "1,800.90",
+      date: "19 Aug 2024",
+      invoiceNumber: "RT3080",
+      owner: "Jensen Huang",
+      status: "paid",
+   },
+   {
+      amount: "1,800.90",
+      date: "19 Aug 2024",
+      invoiceNumber: "RT3080",
+      owner: "Jensen Huang",
       status: "draft",
    },
    {

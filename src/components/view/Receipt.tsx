@@ -5,8 +5,12 @@ import ViewButtonWrapper from "./components/viewButton/ViewButtonWrapper";
 
 interface ReceiptProps {
   handleDelete: VoidFunction;
+  handleDrawerToggler: VoidFunction;
 }
-const Receipt = ({ handleDelete }: ReceiptProps): JSX.Element => {
+const Receipt = ({
+  handleDelete,
+  handleDrawerToggler,
+}: ReceiptProps): JSX.Element => {
   const isMobile = useIsMobile();
 
   return (
@@ -45,7 +49,12 @@ const Receipt = ({ handleDelete }: ReceiptProps): JSX.Element => {
           £ 156.00
         </Typography>
       </div>
-      {isMobile && <ViewButtonWrapper handleDelete={handleDelete} />}
+      {isMobile && (
+        <ViewButtonWrapper
+          handleDelete={handleDelete}
+          handleEdit={handleDrawerToggler}
+        />
+      )}
     </>
   );
 };

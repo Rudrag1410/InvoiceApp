@@ -13,6 +13,7 @@ import DesktopDrawer from "components/drawer/desktopDrawer";
 
 interface ViewProps {
   id: string;
+  setIsEditDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const View = ({ id }: ViewProps): JSX.Element => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -22,6 +23,7 @@ const View = ({ id }: ViewProps): JSX.Element => {
 
   const handleDrawerToggler = () => {
     setIsOpen((prev) => !prev);
+    setIsEditDrawer(true);
   };
   const { back } = useRouter();
   const isMobile = useIsMobile();
@@ -43,8 +45,15 @@ const View = ({ id }: ViewProps): JSX.Element => {
       </div>
 
       <div className={styles.container}>
-        <ViewHead handleDelete={() => setOpenDeleteModal(true)} />
-        <ViewBottom id={id} handleDelete={() => setOpenDeleteModal(true)} />
+        <ViewHead
+          handleDelete={() => setOpenDeleteModal(true)}
+          handleDrawerToggler={handleDrawerToggler}
+        />
+        <ViewBottom
+          id={id}
+          handleDelete={() => setOpenDeleteModal(true)}
+          handleDrawerToggler={handleDrawerToggler}
+        />
       </div>
 
       {openDeleteModal && (

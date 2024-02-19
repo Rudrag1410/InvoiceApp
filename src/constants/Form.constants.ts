@@ -56,3 +56,23 @@ export const FormInputs = {
    STATUS: 'status',
 
 }
+
+export interface FormInputsType {
+   FROM_STREET_ADDRESS: string;
+   FROM_CITY: string;
+   FROM_POST_CODE: string;
+   FROM_COUNTRY: string;
+   CLIENT_NAME: string;
+   TO_STREET_ADDRESS: string;
+   TO_CITY: string;
+   TO_POST_CODE: string;
+   TO_COUNTRY: string;
+   DESCRIPTION: string;
+   ITEM_NAME: string;
+   QTY: string;
+   PRICE: string;
+   TOTAL_AMOUNT: string;
+   DATE: string;
+   PAYMENT: string;
+   STATUS: string;
+}
